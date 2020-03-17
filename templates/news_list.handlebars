@@ -1,0 +1,17 @@
+<div class="notifications" >
+    {{#each this}}
+        {{#if title}}
+            <a href="{{url}}" target="_blank" class="notification">
+                <div class="notification-icon">
+                    <i class="fas fa-inbox"></i>
+                </div>
+                <div class="notification-text">{{title}}</div>
+                <span class="notification-time">{{time}}</span>
+            </a>
+        {{/if}}
+    {{/each}}
+
+    <div class="notifications-show-all">
+        <a href="#!">Show all</a>
+    </div>
+</div>
