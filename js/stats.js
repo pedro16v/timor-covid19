@@ -2,19 +2,7 @@
     'use strict';
 
     const apiURL = "https://thevirustracker.com/free-api?countryTotal=TL";
-    
-    $.ajax({
-      url: apiURL,
-      dataType: 'json',
-      success: function(data) {
-        var countryData = data.countrydata[0];
-        var countryNews = data.countrynewsitems[0];
-
-        loadStats(countryData);
-        loadNews(countryNews);
-      }
-    });
-    
+    const tatoliURL = '//0.0.0.0:8000/json/tatoli.json';    
 
     function loadStats(countryData) {
         $("#total_cases").text(countryData.total_cases);
@@ -28,9 +16,40 @@
     }
 
     function loadNews(countryNews) {
-        // console.log(countryNews);
         $("#newslist").html(Handlebars.templates.news_list(countryNews));
         $("#newslist").html($(".notification").get().reverse());
     }
+
+    function loadTatoli(tatoliNews) {
+        $("#newslist_tatoli").html(Handlebars.templates.news_list(tatoliNews));
+        // $("#newslist_tatoli").html($(".notification").get().reverse());
+    }
+
+
+
+    function getTatoli() {
+        $.ajax({
+          url: tatoliURL,
+          dataType: 'json',
+          success: function(data) {
+            loadTatoli(data);
+          }
+        });
+
+    }
+
+    $.ajax({
+      url: apiURL,
+      dataType: 'json',
+      success: function(data) {
+        var countryData = data.countrydata[0];
+        var countryNews = data.countrynewsitems[0];
+
+        loadStats(countryData);
+        loadNews(countryNews);
+
+        loadTatoli();
+      }
+    });
 
 }())
