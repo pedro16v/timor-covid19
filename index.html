@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600|Open+Sans:400,600,700" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600|Open+Sans:400,600,700" rel="stylesheet"> -->
   <link rel="stylesheet" href="/node_modules/spur-template/dist/css/spur.css">
   <title>Timor-Leste COVID-19</title>
 </head>
@@ -17,7 +17,12 @@
     <div class="container-fluid">
 
       <div class="row dash-row">
-        <div class="col-xl-12"><h1>Timor-Leste COVID-19</h1></div>
+        <div class="col-xl-3"><h1>COVID-19</h1></div>
+    </div>
+    <div class="row dash-row">
+        <div class="col-xl-3">
+            <select class="form-control" id="country_list"></select>
+        </div>
         <!-- <div class="col-xl-12"><h3>Updated: xx/xx/xxxx</h3></div> -->
       </div>
         
@@ -173,7 +178,7 @@
                 </div>
             </div> -->
 
-            <div class="col-xl-6">
+           <!--  <div class="col-xl-6">
                 <div class="card spur-card">
                     <div class="card-header">
                         <div class="spur-card-icon">
@@ -182,13 +187,13 @@
                         <div class="spur-card-title"> On the news </div>
                     </div>
                     <div class="card-body " id="newslist_tatoli">
-                      <!-- Waiting for template -->
+                      
                         
                     </div>
                 </div>
-            </div>
+            </div>  -->
 
-            <div class="col-xl-6">
+            <div class="col-xl-12">
                 <div class="card spur-card">
                     <div class="card-header">
                         <div class="spur-card-icon">
@@ -210,7 +215,7 @@
 
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 <script src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
-<script src="/node_modules/dist/js/bootstrap.min.js"></script>
+<script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/node_modules/spur-template/dist/js/spur.js"></script>
 <script src="/node_modules/handlebars/dist/handlebars.runtime.js"></script>
 <script src="/js/templates.js"></script>
