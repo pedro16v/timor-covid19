@@ -1,0 +1,44 @@
+<div class="row dash-row">
+    <div class="col-xl-12">
+
+        <div class="card spur-card">
+            <div class="card-header">
+                <div class="spur-card-icon">
+                    <i class="fas fa-table"></i>
+                </div>
+                <div class="spur-card-title">Default table</div>
+            </div>
+            <div class="card-body ">
+                <table class="table table-in-card">
+                    <thead>
+                        <tr>
+                            <th scope="col">country</th>
+                            <th scope="col"><a class="col-population" href="#">population</a></th>
+                            <th scope="col"><a class="col-cases" href="#">cases</a></th>
+                            <th scope="col"><a class="col-deaths" href="#">deaths</a></th>
+                            <th scope="col"><a class="col-temperature" href="#">yearly avg temp</a></th>
+                            <th scope="col"><a class="col-ratio1" href="#">deaths/case</a></th>                            
+                            <th scope="col"><a class="col-ratio2" href="#">deaths/population</br> per million</a></th>
+                            <th scope="col"><a class="col-ratio3" href="#">deaths/temperature</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each this}}
+                            <tr>                                
+                                <th scope="row">{{title}}</th>   
+                                <td class="text-right">{{country_population}}</td>
+                                <td class="text-right">{{total_cases}}</td>
+                                <td class="text-right">{{total_deaths}}</td>
+                                <td class="text-right">{{country_temperature}}</td>
+                                <td class="text-right">{{death_ratio_per_infected}} %</td>
+                                <td class="text-right">{{death_ratio_per_population}}</td>
+                                <td class="text-right">{{death_ratio_per_temperature}}</td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,11 @@
+@keyframes fadeIn { 
+  from { opacity: 0; } 
+}
+
+.animate-flicker {
+    animation: fadeIn 1s infinite alternate;
+}
+
+.text-right {
+	text-align: right;
+}
