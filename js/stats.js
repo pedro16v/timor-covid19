@@ -7,7 +7,7 @@
     var countriesByCode;
     (function() {
         $.ajax({
-          url: '/node_modules/country-json/src/country-by-abbreviation.json',
+          url: '/json/country-by-abbreviation.json',
           dataType: 'json',
           success: function(data) {
             countriesByCode = data;
@@ -18,7 +18,7 @@
     var countriesByPopulation;
     (function() {
         $.ajax({
-          url: '/node_modules/country-json/src/country-by-population.json',
+          url: '/json/country-by-population.json',
           dataType: 'json',
           success: function(data) {
             countriesByPopulation = data;
@@ -29,7 +29,7 @@
     var countriesByTemperature;
     (function() {
         $.ajax({
-          url: '/node_modules/country-json/src/country-by-yearly-average-temperature.json',
+          url: '/json/country-by-yearly-average-temperature.json',
           dataType: 'json',
           success: function(data) {
             countriesByTemperature = data;
