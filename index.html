@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,600|Open+Sans:400,600,700" rel="stylesheet">
   <link rel="stylesheet" href="/node_modules/spur-template/dist/css/spur.css">
+  <link rel="stylesheet" href="/css/covid.css">
   <title>Timor-Leste COVID-19</title>
 </head>
 
@@ -19,7 +20,8 @@
             <div class="col-xl-3"><h1>COVID-19</h1></div>
             <div class="col-xl-3">
                 <a href="#" class="page1"><span>Select Country</span></a></br>
-                <a href="#" class="page2"><span>Stats by Country</span></a>
+                <a href="#" class="page2"><span>Stats by Country</span></a></br>
+                <a href="#" class="page3"><span>US breakdown</span></a>
             </div>
         </div>
         <div id="content">
@@ -27,7 +29,9 @@
             <div class="col-xl-3">
                 <select class="form-control" id="country_list"></select>
             </div>
-            <!-- <div class="col-xl-12"><h3>Updated: xx/xx/xxxx</h3></div> -->
+            <div class="col-xl-3">
+                <select class="form-control hidden" id="state_list"></select>
+            </div>            
             </div>
             
             <div class="row dash-row">

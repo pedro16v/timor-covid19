@@ -1,0 +1,210 @@
+[
+    {
+        "name": "California",
+        "population": 39937489
+    },
+    {
+        "name": "Texas",
+        "population": 29472295
+    },
+    {
+        "name": "Florida",
+        "population": 21992985
+    },
+    {
+        "name": "New York",
+        "population": 19440469
+    },
+    {
+        "name": "Pennsylvania",
+        "population": 12820878
+    },
+    {
+        "name": "Illinois",
+        "population": 12659682
+    },
+    {
+        "name": "Ohio",
+        "population": 11747694
+    },
+    {
+        "name": "Georgia",
+        "population": 10736059
+    },
+    {
+        "name": "North Carolina",
+        "population": 10611862
+    },
+    {
+        "name": "Michigan",
+        "population": 10045029
+    },
+    {
+        "name": "New Jersey",
+        "population": 8936574
+    },
+    {
+        "name": "Virginia",
+        "population": 8626207
+    },
+    {
+        "name": "Washington",
+        "population": 7797095
+    },
+    {
+        "name": "Arizona",
+        "population": 7378494
+    },
+    {
+        "name": "Massachusetts",
+        "population": 6976597
+    },
+    {
+        "name": "Tennessee",
+        "population": 6897576
+    },
+    {
+        "name": "Indiana",
+        "population": 6745354
+    },
+    {
+        "name": "Missouri",
+        "population": 6169270
+    },
+    {
+        "name": "Maryland",
+        "population": 6083116
+    },
+    {
+        "name": "Wisconsin",
+        "population": 5851754
+    },
+    {
+        "name": "Colorado",
+        "population": 5845526
+    },
+    {
+        "name": "Minnesota",
+        "population": 5700671
+    },
+    {
+        "name": "South Carolina",
+        "population": 5210095
+    },
+    {
+        "name": "Alabama",
+        "population": 4908621
+    },
+    {
+        "name": "Louisiana",
+        "population": 4645184
+    },
+    {
+        "name": "Kentucky",
+        "population": 4499692
+    },
+    {
+        "name": "Oregon",
+        "population": 4301089
+    },
+    {
+        "name": "Oklahoma",
+        "population": 3954821
+    },
+    {
+        "name": "Connecticut",
+        "population": 3563077
+    },
+    {
+        "name": "Utah",
+        "population": 3282115
+    },
+    {
+        "name": "Iowa",
+        "population": 3179849
+    },
+    {
+        "name": "Nevada",
+        "population": 3139658
+    },
+    {
+        "name": "Arkansas",
+        "population": 3038999
+    },
+    {
+        "name": "Puerto Rico",
+        "population": 3032165
+    },
+    {
+        "name": "Mississippi",
+        "population": 2989260
+    },
+    {
+        "name": "Kansas",
+        "population": 2910357
+    },
+    {
+        "name": "New Mexico",
+        "population": 2096640
+    },
+    {
+        "name": "Nebraska",
+        "population": 1952570
+    },
+    {
+        "name": "Idaho",
+        "population": 1826156
+    },
+    {
+        "name": "West Virginia",
+        "population": 1778070
+    },
+    {
+        "name": "Hawaii",
+        "population": 1412687
+    },
+    {
+        "name": "New Hampshire",
+        "population": 1371246
+    },
+    {
+        "name": "Maine",
+        "population": 1345790
+    },
+    {
+        "name": "Montana",
+        "population": 1086759
+    },
+    {
+        "name": "Rhode Island",
+        "population": 1056161
+    },
+    {
+        "name": "Delaware",
+        "population": 982895
+    },
+    {
+        "name": "South Dakota",
+        "population": 903027
+    },
+    {
+        "name": "North Dakota",
+        "population": 761723
+    },
+    {
+        "name": "Alaska",
+        "population": 734002
+    },
+    {
+        "name": "District Of Columbia",
+        "population": 720687
+    },
+    {
+        "name": "Vermont",
+        "population": 628061
+    },
+    {
+        "name": "Wyoming",
+        "population": 567025
+    }
+]

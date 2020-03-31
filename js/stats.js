@@ -37,6 +37,17 @@
         });
     }());
 
+    var statesByPopulation;
+    (function() {
+        $.ajax({
+          url: '/json/states-by-population.json',
+          dataType: 'json',
+          success: function(data) {
+            statesByPopulation = data;
+          }
+        });
+    }());
+
     const apiURL = "https://thevirustracker.com/free-api?";
     const countryTotalURL = apiURL + "countryTotal=";
     const globalStatsURL = apiURL + "global=stats";
@@ -45,8 +56,24 @@
     const tatoliURL = "/json/tatoli.json";
     const countriesURL = "/json/countries.json";
 
+    const statesAPI = "https://corona.lmao.ninja/states";
+
     var allCountryTotalsData;
 
+    // --- OBJECTS ------------------
+
+    function TableEntry(title, country_population, total_cases, total_deaths, country_temperature, death_ratio_per_infected, death_ratio_per_population, death_ratio_per_temperature) {
+        this.title = title;
+        this.country_population = country_population;
+        this.total_cases = total_cases;
+        this.total_deaths = total_deaths;
+        this.country_temperature = country_temperature;
+        this.death_ratio_per_infected = death_ratio_per_infected;
+        this.death_ratio_per_population = death_ratio_per_population;
+        this.death_ratio_per_temperature = death_ratio_per_temperature;
+    }
+
+    // ------------------------------
 
     function loadStats(countryData) {
         $("#total_cases").text(countryData.total_cases);
@@ -82,7 +109,6 @@
     // }
 
 
-
     function getTatoli() {
         $.ajax({
           url: tatoliURL,
@@ -91,7 +117,6 @@
             loadTatoli(data);
           }
         });
-
     }
 
     function loadData(country) {
@@ -108,6 +133,28 @@
             // loadTatoli();
           }
         });
+    }
+
+    function loadStates(state, data) {
+
+        loadingStats();
+
+        for (var key of Object.keys(data)) {
+
+            if(data[key].state == state) {
+                $("#total_cases").text(data[key].cases);
+                $("#total_active_cases").text(data[key].active);
+                $("#total_serious_cases").text("N/A");
+                $("#total_deaths").text(data[key].deaths);
+                $("#total_recovered").text("N/A");
+                $("#total_unresolved").text("N/A");
+                $("#total_new_cases_today").text(data[key].todayCases);
+                $("#total_new_deaths_today").text(data[key].todayDeaths);
+            }
+        }
+
+
+
     }
 
     function loadSortedByCases(data) {
@@ -275,14 +322,79 @@
             
           }
         });
+    }
 
+    function loadPage3(){
+        $.ajax({
+        url: statesAPI,
+        dataType: 'json',
+        success: function(data) {
+
+            var list = [];
+
+            for (var key of Object.keys(data)) {
+
+                var state_name = data[key].state;
+                var total_deaths = data[key].deaths;
+                var total_cases = data[key].cases;
+                var death_ratio_per_infected = parseFloat((total_deaths / total_cases) * 100).toFixed(2);
+
+                var state_population = function(){
+                    for (var i = 0; i < statesByPopulation.length; i++) {
+                        
+                        if (state_name == statesByPopulation[i].name) {
+                            return parseInt(statesByPopulation[i].population);
+                        }
+                    }
+                }();
+
+                var death_ratio_per_population = parseFloat((total_deaths / state_population) * 1000000).toFixed(0);
+
+
+                var line = new TableEntry(state_name, state_population, total_cases, total_deaths, "N/A", death_ratio_per_infected, death_ratio_per_population, "N/A");
+
+                list.push(line);
+            }
+
+            allCountryTotalsData = list;
+
+            loadSortedByCases(allCountryTotalsData);
+            loadSortingOptions();
+        }
+    });
     }
 
     // ----------------------------------------
 
+    function enableStateDropDown(data) {
+        $("#state_list").on("change", function(){
+            var state = $(this).val();
+
+            loadStates(state, data);
+        })
+    }
+
     function enableDropDown() {
         $("#country_list").on("change", function(){
-            loadData($(this).val());
+
+            var country = $(this).val();
+
+            if (country == "US"){
+                $.ajax({
+                    url: statesAPI,
+                    dataType: 'json',
+                    success: function(data) {
+                        $("#state_list").html(Handlebars.templates.state_list(data));  
+                        $("#state_list").removeClass("hidden");
+
+                        enableStateDropDown(data);
+                    }
+                }); 
+            } else {
+                $("#state_list").addClass("hidden");
+                loadData(country);
+
+            }
         })
     }
 
@@ -292,6 +404,9 @@
         });
         $(".page2").on("click", function(){
             loadPage2();
+        });
+        $(".page3").on("click", function(){
+            loadPage3();
         });
     }
 
