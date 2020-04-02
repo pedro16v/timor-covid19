@@ -1,7 +1,7 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['country_list'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+    var stack1, helper, alias1=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
         }
@@ -9,9 +9,9 @@ templates['country_list'] = template({"1":function(container,depth0,helpers,part
     };
 
   return "   <option value=\""
-    + alias4(((helper = (helper = lookupProperty(helpers,"code1") || (depth0 != null ? lookupProperty(depth0,"code1") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"code1","hash":{},"data":data,"loc":{"start":{"line":2,"column":18},"end":{"line":2,"column":27}}}) : helper)))
+    + alias1(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"countryInfo") : depth0)) != null ? lookupProperty(stack1,"iso2") : stack1), depth0))
     + "\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"name") || (depth0 != null ? lookupProperty(depth0,"name") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data,"loc":{"start":{"line":2,"column":29},"end":{"line":2,"column":37}}}) : helper)))
+    + alias1(((helper = (helper = lookupProperty(helpers,"country") || (depth0 != null ? lookupProperty(depth0,"country") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"country","hash":{},"data":data,"loc":{"start":{"line":2,"column":40},"end":{"line":2,"column":51}}}) : helper)))
     + "</option>\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -22,6 +22,28 @@ templates['country_list'] = template({"1":function(container,depth0,helpers,part
     };
 
   return ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":3,"column":9}}})) != null ? stack1 : "");
+},"useData":true});
+templates['global_stats'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<h3>Global stats</h3>\n<span>Updated: "
+    + alias3((lookupProperty(helpers,"timeanddate")||(depth0 && lookupProperty(depth0,"timeanddate"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"updated") : depth0),{"name":"timeanddate","hash":{},"data":data,"loc":{"start":{"line":2,"column":15},"end":{"line":2,"column":38}}}))
+    + "</span>\n<div class=\"row dash-row\">\n\n    <div class=\"col-sm-6 col-lg-3\">\n        <div class=\"stats stats-primary\">\n            <h3 class=\"stats-title\"> Cases </h3>\n            <div class=\"stats-content\">\n                <div class=\"stats-icon\">\n                    <i class=\"fas fa-user\"></i>\n                </div> \n                 <div class=\"stats-data\">\n                    <div class=\"stats-number\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"cases") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":13,"column":46},"end":{"line":13,"column":65}}}))
+    + "</div>\n                </div>                   \n            </div>\n        </div>\n    </div>\n\n    <div class=\"col-sm-6 col-lg-3\">\n        <div class=\"stats stats-danger\">\n            <h3 class=\"stats-title\"> Deaths </h3>\n            <div class=\"stats-content\">\n                <div class=\"stats-icon\">\n                    <i class=\"fas fa-user\"></i>\n                </div>\n                <div class=\"stats-data\">\n                    <div class=\"stats-number\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"deaths") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":27,"column":46},"end":{"line":27,"column":66}}}))
+    + "</div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"col-sm-6 col-lg-3\">\n        <div class=\"stats stats-primary\">\n            <h3 class=\"stats-title\"> Active </h3>\n            <div class=\"stats-content\">\n                <div class=\"stats-icon\">\n                    <i class=\"fas fa-user\"></i>\n                </div>\n               <div class=\"stats-data\">\n                    <div class=\"stats-number\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"active") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":41,"column":46},"end":{"line":41,"column":66}}}))
+    + "</div>\n                    <div class=\"stats-change\">\n                        <span class=\"stats-percentage\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"recovered") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":43,"column":55},"end":{"line":43,"column":78}}}))
+    + "</span>\n                        <span class=\"stats-timeframe\">recovered</span>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n   \n\n    <div class=\"col-sm-6 col-lg-3\">\n        <div class=\"stats stats-primary\">\n            <h3 class=\"stats-title\"> Affected countries</h3>\n            <div class=\"stats-content\">\n                <div class=\"stats-icon\">\n                    <i class=\"fas fa-user\"></i>\n                </div>\n                <div class=\"stats-data\">\n                    <div class=\"stats-number\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"affected") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":60,"column":46},"end":{"line":60,"column":68}}}))
+    + "</div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n</div>";
 },"useData":true});
 templates['news_list'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -82,6 +104,57 @@ templates['state_list'] = template({"1":function(container,depth0,helpers,partia
 
   return ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":3,"column":9}}})) != null ? stack1 : "");
 },"useData":true});
+templates['stats_by_country'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "               <option value=\""
+    + alias1(container.lambda(((stack1 = (depth0 != null ? lookupProperty(depth0,"countryInfo") : depth0)) != null ? lookupProperty(stack1,"iso2") : stack1), depth0))
+    + "\">"
+    + alias1(((helper = (helper = lookupProperty(helpers,"country") || (depth0 != null ? lookupProperty(depth0,"country") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"country","hash":{},"data":data,"loc":{"start":{"line":5,"column":52},"end":{"line":5,"column":63}}}) : helper)))
+    + "</option>\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"row dash-row\">\n    <div class=\"col-3\">\n        <select class=\"form-control\" id=\"country_list\">\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":4,"column":12},"end":{"line":6,"column":21}}})) != null ? stack1 : "")
+    + "        </select>\n    </div>\n    <div class=\"col-3\">\n        <select class=\"form-control hidden\" id=\"state_list\"></select>\n    </div>            \n    </div>\n\n    <div id=\"country_values\">\n    \n        <!-- content here -->\n\n    </div>   \n</div>";
+},"useData":true});
+templates['stats_by_country_boxes'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"row dash-row\">\n    <div class=\"col-sm-6 col-lg-4\">\n        <div class=\"stats stats-primary\">\n            <h3 class=\"stats-title\"> Total cases </h3>\n            <div class=\"stats-content\">\n                <div class=\"stats-icon\">\n                    <i class=\"fas fa-user\"></i>\n                </div>\n                <div class=\"stats-data\">\n                    <div class=\"stats-number\" id=\"total_cases\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"cases") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":10,"column":63},"end":{"line":10,"column":82}}}))
+    + "</div>\n                    <div class=\"stats-change\">\n                        <span class=\"stats-percentage\" id=\"total_new_cases_today\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"todayCases") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":12,"column":82},"end":{"line":12,"column":106}}}))
+    + "</span>\n                        <span class=\"stats-timeframe\">today</span>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"col-sm-6 col-lg-4\">\n        <div class=\"stats stats-primary\">\n            <h3 class=\"stats-title\"> Total active cases </h3>\n            <div class=\"stats-content\">\n                <div class=\"stats-icon\">\n                    <i class=\"fas fa-user\"></i>\n                </div>\n                <div class=\"stats-data\">\n                    <div class=\"stats-number\" id=\"total_active_cases\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"active") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":28,"column":70},"end":{"line":28,"column":90}}}))
+    + "</div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"col-sm-6 col-lg-4\">\n        <div class=\"stats stats-danger\">\n            <h3 class=\"stats-title\"> Total critical cases </h3>\n            <div class=\"stats-content\">\n                <div class=\"stats-icon\">\n                    <i class=\"fas fa-user\"></i>\n                </div>\n                <div class=\"stats-data\">\n                    <div class=\"stats-number\" id=\"total_serious_cases\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"critical") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":42,"column":71},"end":{"line":42,"column":93}}}))
+    + "</div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row dash-row\">\n\n    <div class=\"col-sm-6 col-lg-4\">\n        <div class=\"stats stats-success\">\n            <h3 class=\"stats-title\"> Total recovered</h3>\n            <div class=\"stats-content\">\n                <div class=\"stats-icon\">\n                    <i class=\"fas fa-user\"></i>\n                </div>\n                <div class=\"stats-data\">\n                    <div class=\"stats-number\" id=\"total_recovered\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"recovered") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":59,"column":67},"end":{"line":59,"column":90}}}))
+    + "</div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"col-sm-6 col-lg-4\">\n        <div class=\"stats stats-primary\">\n            <h3 class=\"stats-title\"> Cases per million </h3>\n            <div class=\"stats-content\">\n                <div class=\"stats-icon\">\n                    <i class=\"fas fa-user\"></i>\n                </div>\n                <div class=\"stats-data\">\n                    <div class=\"stats-number\" id=\"total_unresolved\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"casesPerOneMillion") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":73,"column":68},"end":{"line":73,"column":100}}}))
+    + "</div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"col-sm-6 col-lg-4\">\n        <div class=\"stats stats-danger\">\n            <h3 class=\"stats-title\"> Total deaths </h3>\n            <div class=\"stats-content\">\n                <div class=\"stats-icon\">\n                    <i class=\"fas fa-user\"></i>\n                </div>\n                <div class=\"stats-data\">\n                    <div class=\"stats-number\" id=\"total_deaths\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"deaths") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":87,"column":64},"end":{"line":87,"column":84}}}))
+    + "</div>\n                    <div class=\"stats-change\">\n                        <span class=\"stats-percentage\" id=\"total_new_deaths_today\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"todayDeaths") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":89,"column":83},"end":{"line":89,"column":108}}}))
+    + "</span>\n                        <span class=\"stats-timeframe\">today</span>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>";
+},"useData":true});
 templates['table'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -91,15 +164,15 @@ templates['table'] = template({"1":function(container,depth0,helpers,partials,da
     };
 
   return "                            <tr>                                \n                                <th scope=\"row\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"title") || (depth0 != null ? lookupProperty(depth0,"title") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data,"loc":{"start":{"line":28,"column":48},"end":{"line":28,"column":57}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"country") || (depth0 != null ? lookupProperty(depth0,"country") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"country","hash":{},"data":data,"loc":{"start":{"line":28,"column":48},"end":{"line":28,"column":59}}}) : helper)))
     + "</th>   \n                                <td class=\"text-right\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"country_population") || (depth0 != null ? lookupProperty(depth0,"country_population") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"country_population","hash":{},"data":data,"loc":{"start":{"line":29,"column":55},"end":{"line":29,"column":77}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"population") || (depth0 != null ? lookupProperty(depth0,"population") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"population","hash":{},"data":data,"loc":{"start":{"line":29,"column":55},"end":{"line":29,"column":69}}}) : helper)))
     + "</td>\n                                <td class=\"text-right\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"total_cases") || (depth0 != null ? lookupProperty(depth0,"total_cases") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"total_cases","hash":{},"data":data,"loc":{"start":{"line":30,"column":55},"end":{"line":30,"column":70}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"cases") || (depth0 != null ? lookupProperty(depth0,"cases") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"cases","hash":{},"data":data,"loc":{"start":{"line":30,"column":55},"end":{"line":30,"column":64}}}) : helper)))
     + "</td>\n                                <td class=\"text-right\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"total_deaths") || (depth0 != null ? lookupProperty(depth0,"total_deaths") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"total_deaths","hash":{},"data":data,"loc":{"start":{"line":31,"column":55},"end":{"line":31,"column":71}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"deaths") || (depth0 != null ? lookupProperty(depth0,"deaths") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"deaths","hash":{},"data":data,"loc":{"start":{"line":31,"column":55},"end":{"line":31,"column":65}}}) : helper)))
     + "</td>\n                                <td class=\"text-right\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"country_temperature") || (depth0 != null ? lookupProperty(depth0,"country_temperature") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"country_temperature","hash":{},"data":data,"loc":{"start":{"line":32,"column":55},"end":{"line":32,"column":78}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"temperature") || (depth0 != null ? lookupProperty(depth0,"temperature") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"temperature","hash":{},"data":data,"loc":{"start":{"line":32,"column":55},"end":{"line":32,"column":70}}}) : helper)))
     + "</td>\n                                <td class=\"text-right\">"
     + alias4(((helper = (helper = lookupProperty(helpers,"death_ratio_per_infected") || (depth0 != null ? lookupProperty(depth0,"death_ratio_per_infected") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"death_ratio_per_infected","hash":{},"data":data,"loc":{"start":{"line":33,"column":55},"end":{"line":33,"column":83}}}) : helper)))
     + " %</td>\n                                <td class=\"text-right\">"

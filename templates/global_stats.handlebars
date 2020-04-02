@@ -1,0 +1,66 @@
+<h3>Global stats</h3>
+<span>Updated: {{timeanddate updated}}</span>
+<div class="row dash-row">
+
+    <div class="col-sm-6 col-lg-3">
+        <div class="stats stats-primary">
+            <h3 class="stats-title"> Cases </h3>
+            <div class="stats-content">
+                <div class="stats-icon">
+                    <i class="fas fa-user"></i>
+                </div> 
+                 <div class="stats-data">
+                    <div class="stats-number">{{thousands cases}}</div>
+                </div>                   
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+        <div class="stats stats-danger">
+            <h3 class="stats-title"> Deaths </h3>
+            <div class="stats-content">
+                <div class="stats-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-number">{{thousands deaths}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-3">
+        <div class="stats stats-primary">
+            <h3 class="stats-title"> Active </h3>
+            <div class="stats-content">
+                <div class="stats-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+               <div class="stats-data">
+                    <div class="stats-number">{{thousands active}}</div>
+                    <div class="stats-change">
+                        <span class="stats-percentage">{{thousands recovered}}</span>
+                        <span class="stats-timeframe">recovered</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <div class="col-sm-6 col-lg-3">
+        <div class="stats stats-primary">
+            <h3 class="stats-title"> Affected countries</h3>
+            <div class="stats-content">
+                <div class="stats-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-number">{{thousands affected}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,52 +1,93 @@
 (function(){
     'use strict';
 
-    const defaultCoutry = "TL"
-    const hostname = document.location.hostname;
+    Handlebars.registerHelper('thousands', function (value) {
+        return parseInt( value ).toLocaleString();
+    });
+    Handlebars.registerHelper('timeanddate', function (value){
+        return new Date(value).toLocaleDateString();
+    });
 
-    var countriesByCode;
-    (function() {
-        $.ajax({
-          url: '/json/country-by-abbreviation.json',
-          dataType: 'json',
-          success: function(data) {
-            countriesByCode = data;
-          }
-        });
-    }());
+    var Settings = {
+        defaultCountry : "TL",
+        hostname : document.location.hostname,
+        data : {
+            novel : {
+                world : {
+                    url : "https://corona.lmao.ninja/all",
+                    cache: null
+                },
+                countries : {
+                    url : "https://corona.lmao.ninja/countries",
+                    sort : "?sort=",
+                    options : [],
+                    cache : null
+                },
+                country : {
+                    url : "https://corona.lmao.ninja/countries/",
+                    options : [],
+                    cache : null
+                },
+                statesUS : {
+                    url : "https://corona.lmao.ninja/states",
+                    cache : null                    
+                }
+            },
+            jhucsse : {
+                provinces : {
+                    url : "https://corona.lmao.ninja/v2/jhucsse",
+                    cache : null
+                },
+                historical : {
+                    url : "https://corona.lmao.ninja/v2/historical",
+                    sort : "/",
+                    options : [],
+                    cache : null
+                }                
+            }
+        },
+        lists : {
+            countriesByCode : null,
+            countriesByPopulation : null,
+            countriesByTemperature : null,
+            statesByPopulation : null
+        },
+        objects : {
+            world : function World(cases, deaths, active, recovered, affected, updated) {
+                this.cases = cases;
+                this.deaths = deaths;
+                this.active = active;
+                this.recovered = recovered;
+                this.affected = affected;
+                this.updated = updated;
+            },
+                "active":4735,
+            country : function Country(country, cases, todayCases, deaths, todayDeaths, recovered, active, critical, casesPerOneMillion, flag) {
+                this.country = country;
+                this.cases = cases;
+                this.todayCases = todayCases;
+                this.deaths = deaths;
+                this.todayDeaths = todayDeaths;
+                this.recovered = recovered;
+                this.active = active;
+                this.critical = critical;
+                this.casesPerOneMillion = casesPerOneMillion;
+                this.flag = flag;
+            },
+            fullStats : function FullStats(country, population, cases, deaths, temperature, death_ratio_per_infected, death_ratio_per_population, death_ratio_per_temperature) {
+                this.country = country;
+                this.population = population;
+                this.cases = cases;
+                this.deaths = deaths;
+                this.temperature = temperature;
+                this.death_ratio_per_infected = death_ratio_per_infected;
+                this.death_ratio_per_population = death_ratio_per_population;
+                this.death_ratio_per_temperature = death_ratio_per_temperature;
+            }
+        }
+    };
+
     
-    var countriesByPopulation;
-    (function() {
-        $.ajax({
-          url: '/json/country-by-population.json',
-          dataType: 'json',
-          success: function(data) {
-            countriesByPopulation = data;
-          }
-        });
-    }());
-
-    var countriesByTemperature;
-    (function() {
-        $.ajax({
-          url: '/json/country-by-yearly-average-temperature.json',
-          dataType: 'json',
-          success: function(data) {
-            countriesByTemperature = data;
-          }
-        });
-    }());
-
-    var statesByPopulation;
-    (function() {
-        $.ajax({
-          url: '/json/states-by-population.json',
-          dataType: 'json',
-          success: function(data) {
-            statesByPopulation = data;
-          }
-        });
-    }());
 
     const apiURL = "https://thevirustracker.com/free-api?";
     const countryTotalURL = apiURL + "countryTotal=";
@@ -152,9 +193,6 @@
                 $("#total_new_deaths_today").text(data[key].todayDeaths);
             }
         }
-
-
-
     }
 
     function loadSortedByCases(data) {
@@ -398,9 +436,305 @@
         })
     }
 
+    
+    // NG -------------------------------------
+
+    function request(pointer, callback) {
+
+        if(pointer.cache !== null) {
+            callback(pointer.cache);
+        } else {
+            $.ajax({
+                url: pointer.url,
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    pointer.cache = data;
+                    callback(data);
+                }
+            });
+        }
+    }
+
+    function orderList(data, criteria) {
+
+        return data.sort((a, b) => (a.criteria > b.criteria) ? 1 : -1);
+    }
+
+    function loadOrderOptions(data) {
+
+        $(".col-cases").on("click", function (data){
+            loadSortedByCases(data);            
+        });
+        $(".col-deaths").on("click", function (data){
+            data.sort((a, b) => (a.total_deaths < b.total_deaths) ? 1 : -1);
+            $("#content").html(Handlebars.templates.table(data));
+            loadOrderOptions(data);
+        });
+        $(".col-temperature").on("click", function (data){
+            data.sort((a, b) => (a.country_temperature < b.country_temperature) ? 1 : -1);
+            $("#content").html(Handlebars.templates.table(data));
+            loadOrderOptions(data);
+        });
+        $(".col-ratio1").on("click", function (data){
+            data.sort((a, b) => (a.death_ratio_per_infected < b.death_ratio_per_infected) ? 1 : -1);
+            $("#content").html(Handlebars.templates.table(data));
+            loadOrderOptions(data);
+        });
+        $(".col-population").on("click", function (data){
+            data.sort((a, b) => (a.country_population < b.country_population) ? 1 : -1);
+            $("#content").html(Handlebars.templates.table(data));
+            loadOrderOptions(data);
+        });
+        $(".col-ratio2").on("click", function (data){
+            data.sort((a, b) => (a.death_ratio_per_population < b.death_ratio_per_population) ? 1 : -1);
+            $("#content").html(Handlebars.templates.table(data));
+            loadOrderOptions(data);
+        });
+        $(".col-ratio3").on("click", function (data){
+            data.sort((a, b) => (a.death_ratio_per_temperature < b.death_ratio_per_temperature) ? 1 : -1);
+            $("#content").html(Handlebars.templates.table(data));
+            loadOrderOptions(data);
+        });
+    }
+
+    function loadMain() {
+
+        var callback = function(data) {
+             var world = new Settings.objects.world(data.cases, data.deaths, data.active, data.recovered, data.affectedCountries, data.updated);
+            $("#content").html(Handlebars.templates.global_stats(world));
+        };
+
+        request(Settings.data.novel.world, callback);
+    }
+
+    function loadPage1(country=Settings.defaultCountry){
+
+        function loadCountryStats(data, countryCode) {
+
+            for (var key of Object.keys(data)) {
+
+                if (data[key].hasOwnProperty("countryInfo") && data[key].countryInfo.hasOwnProperty("iso2") && data[key].countryInfo.iso2 == countryCode) {
+
+                    var country = new Settings.objects.country(
+                        data[key].country,
+                        data[key].cases,
+                        data[key].todayCases,
+                        data[key].deaths,
+                        data[key].todayDeaths,
+                        data[key].recovered,
+                        data[key].active,
+                        data[key].critical,
+                        data[key].casesPerOneMillion,
+                        data[key].countryInfo.flag
+                    );
+
+                    $("#country_values").html(Handlebars.templates.stats_by_country_boxes(country));
+
+                }
+            }
+        }
+
+        var callback = function(data) {
+
+            var data = orderList(data, "country");
+            data["country"] = Settings.defaultCountry;
+            
+            $("#content").html(Handlebars.templates.stats_by_country(data));
+            $("#country_list").val(country);
+            
+            $("#country_list").on("change", function (){
+                loadPage1($(this).val());
+            })
+
+            loadCountryStats(data, country);
+
+            // loadPage1();
+
+            // enablePagination();
+            // enableDropDown();
+            // loadData(Settings.defaultCountry);
+        }
+
+        request(Settings.data.novel.countries, callback);
+    }
+
+    function loadPage2() {
+
+        function fetchExtraData() {
+            (function() {
+                $.ajax({
+                  url: '/json/country-by-abbreviation.json',
+                  dataType: 'json',
+                  success: function(data) {
+                    Settings.lists.countriesByCode = data;
+                  }
+                });
+            }());
+            
+            (function() {
+                $.ajax({
+                  url: '/json/country-by-population.json',
+                  dataType: 'json',
+                  success: function(data) {
+                    Settings.lists.countriesByPopulation = data;
+                  }
+                });
+            }());
+
+            (function() {
+                $.ajax({
+                  url: '/json/country-by-yearly-average-temperature.json',
+                  dataType: 'json',
+                  success: function(data) {
+                    Settings.lists.countriesByTemperature = data;
+                  }
+                });
+            }());
+
+            (function() {
+                $.ajax({
+                  url: '/json/states-by-population.json',
+                  dataType: 'json',
+                  success: function(data) {
+                    Settings.lists.statesByPopulation = data;
+                  }
+                });
+            }());
+        }
+
+        function getPopulation(countryCode) {
+
+            var byCode = Settings.lists.countriesByCode;            
+            var country_name = function(){
+                for (var i = 0; i < byCode.length; i++) {
+                    if (countryCode == byCode[i].abbreviation) {
+                        return byCode[i].country;
+                    }
+                }
+            }();
+
+            var byPopulation = Settings.lists.countriesByPopulation;            
+            var country_population = function(){
+                for (var i = 0; i < byPopulation.length; i++) {
+                    if (country_name == byPopulation[i].country) {
+                        return parseInt(byPopulation[i].population);
+                    }
+                }
+            }(); 
+
+            try {
+                return country_population;
+            } catch(err) {
+                console.log(err);
+            }
+        }
+
+        function getTemperature(countryCode) {
+
+            var byCode = Settings.lists.countriesByCode;            
+            var country_name = function(){
+                for (var i = 0; i < byCode.length; i++) {
+                    if (countryCode == byCode[i].abbreviation) {
+                        return byCode[i].country;
+                    }
+                }
+            }();
+
+            var byTemperature = Settings.lists.countriesByTemperature;
+            var country_temperature = function(){
+                for (var i = 0; i < byTemperature.length; i++) {
+                    if (country_name == byTemperature[i].country) {
+                        return parseInt(byTemperature[i].temperature);
+                    }
+                }
+            }();
+
+            try {
+                return country_temperature
+            } catch(err) {
+                console.log(err);
+            }
+        }
+
+        function getDeathsByCase(deaths, cases) { 
+            
+            var death_ratio_per_infected = 0;
+            
+            if (deaths > 0 && cases > 0) {
+                death_ratio_per_infected = parseFloat((deaths / cases) * 100).toFixed(2);
+            } 
+
+            return death_ratio_per_infected;
+        }
+
+        function getDeathsByPopulation(deaths, population) {
+
+            var death_ratio_per_population = 0;
+
+            if (deaths > 0 && population > 0) {
+                death_ratio_per_population = parseFloat((deaths / population) * 1000000).toFixed(2);
+            } 
+
+            return death_ratio_per_population;
+        }
+
+        function getDeathsByTemperature(deaths, temperature) {
+            var death_ratio_per_temperature = 0;
+
+            if (deaths > 0 && temperature > 0) {
+                death_ratio_per_temperature = parseInt((deaths / temperature));
+            } 
+
+            return death_ratio_per_temperature;
+        }
+
+        var callback = function (data){
+
+            var list = [];
+
+            for (var key of Object.keys(data)) {
+
+                var population = getPopulation(data[key].countryInfo.iso2);
+                var temperature = getTemperature(data[key].countryInfo.iso2);
+                // var country = new Settings.objects.fullStats(
+                //     data[key].country,
+                //     population,
+                //     data[key].cases,                        
+                //     data[key].deaths,
+                //     temperature,
+                //     getDeathsByCase(data[key].deaths, data[key].cases),
+                //     getDeathsByPopulation(data[key].deaths, population),
+                //     getDeathsByTemperature(data[key].deaths, temperature)
+                // );
+                var country = {};
+                country["country"] = data[key].country,
+                country["population"] = population,
+                country["cases"] = data[key].cases,                        
+                country["deaths"] = data[key].deaths,
+                country["temperature"] = temperature,
+                country["death_ratio_per_infected"] = getDeathsByCase(data[key].deaths, data[key].cases),
+                country["death_ratio_per_population"] = getDeathsByPopulation(data[key].deaths, population),
+                country["death_ratio_per_temperature"] = getDeathsByTemperature(data[key].deaths, temperature)
+                
+
+                list.push(country);
+            }
+
+            $("#content").html(Handlebars.templates.table(list));
+            loadOrderOptions(list);
+        }
+
+        fetchExtraData();
+        request(Settings.data.novel.countries, callback);
+    }
+
     function enablePagination() {
+        $(".page0").on("click", function(){
+            loadMain();
+        });
         $(".page1").on("click", function(){
-            location.reload();
+            loadPage1();
         });
         $(".page2").on("click", function(){
             loadPage2();
@@ -412,20 +746,7 @@
 
     // ----------------------------------------
 
-    $.ajax({
-        url: countriesURL,
-        dataType: 'json',
-        success: function(data) {
-            $("#country_list").html(Handlebars.templates.country_list(data));
-            $("#country_list").val(defaultCoutry);
-
-            enablePagination();
-            enableDropDown();
-            loadData(defaultCoutry);
-            // loadPage2();
-
-
-        }
-    });    
+    enablePagination();
+    loadMain();
 
 }())

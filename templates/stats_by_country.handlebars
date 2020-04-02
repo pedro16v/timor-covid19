@@ -1,0 +1,19 @@
+<div class="row dash-row">
+    <div class="col-3">
+        <select class="form-control" id="country_list">
+            {{#each this}}
+               <option value="{{countryInfo.iso2}}">{{country}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="col-3">
+        <select class="form-control hidden" id="state_list"></select>
+    </div>            
+    </div>
+
+    <div id="country_values">
+    
+        <!-- content here -->
+
+    </div>   
+</div>

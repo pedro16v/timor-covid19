@@ -1,0 +1,96 @@
+<div class="row dash-row">
+    <div class="col-sm-6 col-lg-4">
+        <div class="stats stats-primary">
+            <h3 class="stats-title"> Total cases </h3>
+            <div class="stats-content">
+                <div class="stats-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-number" id="total_cases">{{thousands cases}}</div>
+                    <div class="stats-change">
+                        <span class="stats-percentage" id="total_new_cases_today">{{thousands todayCases}}</span>
+                        <span class="stats-timeframe">today</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <div class="stats stats-primary">
+            <h3 class="stats-title"> Total active cases </h3>
+            <div class="stats-content">
+                <div class="stats-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-number" id="total_active_cases">{{thousands active}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <div class="stats stats-danger">
+            <h3 class="stats-title"> Total critical cases </h3>
+            <div class="stats-content">
+                <div class="stats-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-number" id="total_serious_cases">{{thousands critical}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row dash-row">
+
+    <div class="col-sm-6 col-lg-4">
+        <div class="stats stats-success">
+            <h3 class="stats-title"> Total recovered</h3>
+            <div class="stats-content">
+                <div class="stats-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-number" id="total_recovered">{{thousands recovered}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <div class="stats stats-primary">
+            <h3 class="stats-title"> Cases per million </h3>
+            <div class="stats-content">
+                <div class="stats-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-number" id="total_unresolved">{{thousands casesPerOneMillion}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-4">
+        <div class="stats stats-danger">
+            <h3 class="stats-title"> Total deaths </h3>
+            <div class="stats-content">
+                <div class="stats-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-number" id="total_deaths">{{thousands deaths}}</div>
+                    <div class="stats-change">
+                        <span class="stats-percentage" id="total_new_deaths_today">{{thousands todayDeaths}}</span>
+                        <span class="stats-timeframe">today</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
