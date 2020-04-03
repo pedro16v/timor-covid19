@@ -1,13 +1,6 @@
 (function(){
     'use strict';
 
-    Handlebars.registerHelper('thousands', function (value) {
-        return parseInt( value ).toLocaleString();
-    });
-    Handlebars.registerHelper('timeanddate', function (value){
-        return new Date(value).toLocaleDateString();
-    });
-
     var Settings = {
         defaultCountry : "TL",
         hostname : document.location.hostname,
@@ -86,7 +79,7 @@
                 this.case_ratio_per_population = case_ratio_per_population;
                 this.flag = flag;
             },
-            USstate : function State(name, population, cases, todayCases, deaths, todayDeaths, recovered, active, death_ratio_per_infected, death_ratio_per_population, case_ratio_per_population) {
+            StateStats : function StateStats(name, population, cases, todayCases, deaths, todayDeaths, recovered, active, death_ratio_per_infected, death_ratio_per_population, case_ratio_per_population) {
                 this.name = name;
                 this.population = population;
                 this.cases = cases;
@@ -98,11 +91,27 @@
                 this.death_ratio_per_infected = death_ratio_per_infected, 
                 this.death_ratio_per_population = death_ratio_per_population, 
                 this.case_ratio_per_population = case_ratio_per_population
-            }
+            },
+            USprovince : function USprovince(name) {
+                this.name = name;
+                this.cities = {};
+                
+
+            },
+            UScity : function UScity(name, updated, confirmed, deaths, recovered) {
+                this.name = name;
+                this.updated = updated;
+                this.confirmed = confirmed;
+                this.deaths = deaths;
+                this.recovered = recovered;
+            },
+
+
+
         }
     };
     
-    // NG ----------------------------------------------------
+    // FETCH DATA---------------------------------------------
 
     function request(pointer, callback) {
 
@@ -162,6 +171,17 @@
             });
         }());
     }
+
+    function registerHelpers() {
+        Handlebars.registerHelper('thousands', function (value) {
+            return parseInt( value ).toLocaleString();
+        });
+        Handlebars.registerHelper('timeanddate', function (value){
+            return new Date(value).toLocaleDateString();
+        });
+    };
+
+    // HANDLE DATA -------------------------------------------
 
     function orderList(data, criteria) {
 
@@ -299,6 +319,10 @@
             }
         }
 
+        function loadStates() {
+            
+        }
+
         var callback = function(data) {
 
             var data = orderList(data, "country");
@@ -308,8 +332,15 @@
             $("#country_list").val(country);
             
             $("#country_list").on("change", function (){
-                loadPage1($(this).val());
-            })
+
+                var value = $(this).val();
+
+                if (value == "US") {
+                    loadStates();
+                } else {
+                    loadPage1(value);
+                }                
+            });
 
             loadCountryStats(data, country);
         }
@@ -423,7 +454,7 @@
             for (var key of Object.keys(data)) {
 
                 var population = getStatePopulation(data[key].state);
-                var state = new Settings.objects.USstate(
+                var state = new Settings.objects.StateStats(
                     data[key].state,
                     population,
                     data[key].cases,
@@ -445,7 +476,6 @@
         }
 
         request(Settings.data.novel.statesUS, callback);
-
     }
 
     function enablePagination() {
@@ -466,6 +496,7 @@
     // START -------------------------------------------------
 
     fetchExtraData();
+    registerHelpers();
     enablePagination();
     loadMain();
 
