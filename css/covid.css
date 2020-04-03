@@ -13,3 +13,12 @@
 .hidden {
 	visibility: hidden;
 }
+
+.flag {
+	height: 24px;
+	width: 32px;
+}
+
+table thead th {
+	text-align: center;
+}

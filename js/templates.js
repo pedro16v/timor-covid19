@@ -156,30 +156,45 @@ templates['stats_by_country_boxes'] = template({"compiler":[8,">= 4.3.0"],"main"
     + "</span>\n                        <span class=\"stats-timeframe\">today</span>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>";
 },"useData":true});
 templates['table'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
         }
         return undefined
     };
 
-  return "                            <tr>                                \n                                <th scope=\"row\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"country") || (depth0 != null ? lookupProperty(depth0,"country") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"country","hash":{},"data":data,"loc":{"start":{"line":28,"column":48},"end":{"line":28,"column":59}}}) : helper)))
-    + "</th>   \n                                <td class=\"text-right\">"
-    + alias4((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"population") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":29,"column":55},"end":{"line":29,"column":80}}}))
+  return "                            <tr>                                \n                                <th scope=\"row\">\n                                    "
+    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"flag") : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":30,"column":36},"end":{"line":30,"column":90}}})) != null ? stack1 : "")
+    + "\n                                    "
+    + alias4(((helper = (helper = lookupProperty(helpers,"name") || (depth0 != null ? lookupProperty(depth0,"name") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data,"loc":{"start":{"line":31,"column":36},"end":{"line":31,"column":44}}}) : helper)))
+    + "\n                                </th>   \n                                <td class=\"text-right\">"
+    + alias4((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"population") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":33,"column":55},"end":{"line":33,"column":80}}}))
     + "</td>\n                                <td class=\"text-right\">"
-    + alias4((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"cases") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":30,"column":55},"end":{"line":30,"column":75}}}))
+    + alias4((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"cases") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":34,"column":55},"end":{"line":34,"column":75}}}))
     + "</td>\n                                <td class=\"text-right\">"
-    + alias4((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"deaths") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":31,"column":55},"end":{"line":31,"column":76}}}))
+    + alias4((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"deaths") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":35,"column":55},"end":{"line":35,"column":76}}}))
     + "</td>\n                                <td class=\"text-right\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"temperature") || (depth0 != null ? lookupProperty(depth0,"temperature") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"temperature","hash":{},"data":data,"loc":{"start":{"line":32,"column":55},"end":{"line":32,"column":70}}}) : helper)))
-    + "</td>\n                                <td class=\"text-right\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"death_ratio_per_infected") || (depth0 != null ? lookupProperty(depth0,"death_ratio_per_infected") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"death_ratio_per_infected","hash":{},"data":data,"loc":{"start":{"line":33,"column":55},"end":{"line":33,"column":83}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"death_ratio_per_infected") || (depth0 != null ? lookupProperty(depth0,"death_ratio_per_infected") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"death_ratio_per_infected","hash":{},"data":data,"loc":{"start":{"line":36,"column":55},"end":{"line":36,"column":83}}}) : helper)))
     + " %</td>\n                                <td class=\"text-right\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"death_ratio_per_population") || (depth0 != null ? lookupProperty(depth0,"death_ratio_per_population") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"death_ratio_per_population","hash":{},"data":data,"loc":{"start":{"line":34,"column":55},"end":{"line":34,"column":85}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"death_ratio_per_population") || (depth0 != null ? lookupProperty(depth0,"death_ratio_per_population") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"death_ratio_per_population","hash":{},"data":data,"loc":{"start":{"line":37,"column":55},"end":{"line":37,"column":85}}}) : helper)))
     + "</td>\n                                <td class=\"text-right\">"
-    + alias4(((helper = (helper = lookupProperty(helpers,"death_ratio_per_temperature") || (depth0 != null ? lookupProperty(depth0,"death_ratio_per_temperature") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"death_ratio_per_temperature","hash":{},"data":data,"loc":{"start":{"line":35,"column":55},"end":{"line":35,"column":86}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"case_ratio_per_population") || (depth0 != null ? lookupProperty(depth0,"case_ratio_per_population") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"case_ratio_per_population","hash":{},"data":data,"loc":{"start":{"line":38,"column":55},"end":{"line":38,"column":84}}}) : helper)))
+    + "</td>\n                                <td class=\"text-right\">"
+    + alias4(((helper = (helper = lookupProperty(helpers,"temperature") || (depth0 != null ? lookupProperty(depth0,"temperature") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"temperature","hash":{},"data":data,"loc":{"start":{"line":39,"column":55},"end":{"line":39,"column":70}}}) : helper)))
+    + "</td>\n                                <td class=\"text-right\">"
+    + alias4(((helper = (helper = lookupProperty(helpers,"death_ratio_per_temperature") || (depth0 != null ? lookupProperty(depth0,"death_ratio_per_temperature") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"death_ratio_per_temperature","hash":{},"data":data,"loc":{"start":{"line":40,"column":55},"end":{"line":40,"column":86}}}) : helper)))
     + "</td>\n                            </tr>\n";
+},"2":function(container,depth0,helpers,partials,data) {
+    var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<img class=\"flag\" src=\""
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"flag") || (depth0 != null ? lookupProperty(depth0,"flag") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"flag","hash":{},"data":data,"loc":{"start":{"line":30,"column":71},"end":{"line":30,"column":79}}}) : helper)))
+    + "\" />";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -188,8 +203,8 @@ templates['table'] = template({"1":function(container,depth0,helpers,partials,da
         return undefined
     };
 
-  return "<div class=\"row dash-row\">\n    <div class=\"col-xl-12\">\n\n        <div class=\"card spur-card\">\n            <div class=\"card-header\">\n                <div class=\"spur-card-icon\">\n                    <i class=\"fas fa-table\"></i>\n                </div>\n                <div class=\"spur-card-title\">Default table</div>\n            </div>\n            <div class=\"card-body \">\n                <table class=\"table table-in-card\">\n                    <thead>\n                        <tr>\n                            <th scope=\"col\">country</th>\n                            <th scope=\"col\"><a class=\"col-population\" href=\"#\">population</a></th>\n                            <th scope=\"col\"><a class=\"col-cases\" href=\"#\">cases</a></th>\n                            <th scope=\"col\"><a class=\"col-deaths\" href=\"#\">deaths</a></th>\n                            <th scope=\"col\"><a class=\"col-temperature\" href=\"#\">yearly avg temp</a></th>\n                            <th scope=\"col\"><a class=\"col-ratio1\" href=\"#\">deaths/case</a></th>                            \n                            <th scope=\"col\"><a class=\"col-ratio2\" href=\"#\">deaths/population</br> per million</a></th>\n                            <th scope=\"col\"><a class=\"col-ratio3\" href=\"#\">deaths/temperature</a></th>\n                        </tr>\n                    </thead>\n                    <tbody>\n"
-    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":26,"column":24},"end":{"line":37,"column":33}}})) != null ? stack1 : "")
+  return "<div class=\"row dash-row\">\n    <div class=\"col-xl-12\">\n\n        <div class=\"card spur-card\">\n            <div class=\"card-header\">\n                <div class=\"spur-card-icon\">\n                    <i class=\"fas fa-table\"></i>\n                </div>\n                <div class=\"spur-card-title\">Stats by Country</div>\n            </div>\n            <div class=\"card-body\">\n                <table class=\"table table-in-card\">\n                    <thead>\n                        <tr>\n                            <th scope=\"col\"><a class=\"col-name\" href=\"#\">name</a></th>\n                            <th scope=\"col\"><a class=\"col-population\" href=\"#\">population</a></th>\n                            <th scope=\"col\"><a class=\"col-cases\" href=\"#\">cases</a></th>\n                            <th scope=\"col\"><a class=\"col-deaths\" href=\"#\">deaths</a></th>\n                            <th scope=\"col\"><a class=\"col-ratio1\" href=\"#\">deaths per case</a></th> \n                            <th scope=\"col\"><a class=\"col-ratio2\" href=\"#\">deaths per million</a></th>\n                            <th scope=\"col\"><a class=\"col-ratio4\" href=\"#\">cases per million</a></th>\n                            <th scope=\"col\"><a class=\"col-temperature\" href=\"#\">AVG ºC</a></th>\n                            <th scope=\"col\"><a class=\"col-ratio3\" href=\"#\">deaths per degree</a></th>\n                        </tr>\n                    </thead>\n                    <tbody>\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":27,"column":24},"end":{"line":42,"column":33}}})) != null ? stack1 : "")
     + "                    </tbody>\n                </table>\n            </div>\n        </div>\n\n    </div>\n</div>";
 },"useData":true});
 })();
