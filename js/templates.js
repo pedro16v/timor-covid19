@@ -125,7 +125,7 @@ templates['stats_by_country'] = template({"1":function(container,depth0,helpers,
         return undefined
     };
 
-  return "<div class=\"row dash-row\">\n    <div class=\"col-3\">\n        <select class=\"form-control\" id=\"country_list\">\n"
+  return "<div class=\"row dash-row\">\n    <div class=\"col-xl-3 col-lg-6 col-sm-12\">\n        <select class=\"form-control\" id=\"country_list\">\n"
     + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":4,"column":12},"end":{"line":6,"column":21}}})) != null ? stack1 : "")
     + "        </select>\n    </div>\n    <div class=\"col-3\">\n        <select class=\"form-control hidden\" id=\"state_list\"></select>\n    </div>            \n    </div>\n\n    <div id=\"country_values\">\n    \n        <!-- content here -->\n\n    </div>   \n</div>";
 },"useData":true});
