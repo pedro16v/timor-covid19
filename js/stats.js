@@ -185,7 +185,7 @@
 
     function orderList(data, criteria) {
 
-        return data.sort((a, b) => (a.criteria > b.criteria) ? 1 : -1);
+        return data.sort((a, b) => (a.$(criteria) > b.$(criteria)) ? 1 : -1);
     }
 
     function loadOrderOptions(data) {
@@ -325,7 +325,8 @@
 
         var callback = function(data) {
 
-            var data = orderList(data, "country");
+            // var data = orderList(data, "country");
+            data.sort((a, b) => (a.country > b.country) ? 1 : -1);
             data["country"] = Settings.defaultCountry;
             
             $("#content").html(Handlebars.templates.stats_by_country(data));

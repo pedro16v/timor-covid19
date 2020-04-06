@@ -1,0 +1,36 @@
+<div class="row dash-row">
+    <div class="col-xl-12">
+
+        <div class="card spur-card">
+            <div class="card-header">
+                <div class="spur-card-icon">
+                    <i class="fas fa-table"></i>
+                </div>
+                <div class="spur-card-title">Historical</div>
+            </div>
+            <div class="card-body">
+                <table class="table table-in-card">
+                    <thead>
+                        <tr>
+                            <th scope="col"><a class="col-name" href="#">date</a></th>
+                            <th scope="col"><a class="col-name" href="#">cases</a></th>
+                            <!-- <th scope="col"><a class="col-name" href="#">deaths</a></th>
+                            <th scope="col"><a class="col-name" href="#">recovered</a></th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each this}}
+                            <tr>                                
+                                <th scope="row"></th>   
+                                <td class="text-right">{{thousands cases}}</td>
+                                <!-- <td class="text-right">{{thousands deaths}}</td>
+                                <td class="text-right">{{thousands recovered}}</td> -->
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
