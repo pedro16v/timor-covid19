@@ -2,27 +2,30 @@
     'use strict';
 
     var Settings = {
-        defaultCountry : "TL",
+        defaultCountry : {
+            code : "TL",
+            name : "Timor-Lest"
+        },
         hostname : document.location.hostname,
         data : {
             novel : {
                 world : {
-                    url : "https://corona.lmao.ninja/all",
+                    url : "https://corona.lmao.ninja/v2/all",
                     cache: null
                 },
                 countries : {
-                    url : "https://corona.lmao.ninja/countries",
+                    url : "https://corona.lmao.ninja/v2/countries",
                     sort : "?sort=",
                     options : [],
                     cache : null
                 },
                 country : {
-                    url : "https://corona.lmao.ninja/countries/",
+                    url : "https://corona.lmao.ninja/v2/countries/",
                     options : [],
                     cache : null
                 },
                 statesUS : {
-                    url : "https://corona.lmao.ninja/states",
+                    url : "https://corona.lmao.ninja/v2/states",
                     cache : null                    
                 }
             },
@@ -115,6 +118,8 @@
 
     function request(pointer, callback) {
 
+        console.log(pointer);
+
         if(pointer.cache !== null) {
             callback(pointer.cache);
         } else {
@@ -182,11 +187,6 @@
     };
 
     // HANDLE DATA -------------------------------------------
-
-    function orderList(data, criteria) {
-
-        return data.sort((a, b) => (a.$(criteria) > b.$(criteria)) ? 1 : -1);
-    }
 
     function loadOrderOptions(data) {
 
@@ -292,7 +292,7 @@
         request(Settings.data.novel.world, callback);
     }
 
-    function loadPage1(country=Settings.defaultCountry){
+    function loadPage1(country=Settings.defaultCountry.code){
 
         function loadCountryStats(data, countryCode) {
 
@@ -314,7 +314,6 @@
                     );
 
                     $("#country_values").html(Handlebars.templates.stats_by_country_boxes(country));
-
                 }
             }
         }
@@ -323,11 +322,47 @@
             
         }
 
-        var callback = function(data) {
+        function loadHistoricalData(countryCode) {
 
-            // var data = orderList(data, "country");
+            console.log(countryCode);
+
+            var callback2 = function(data) {
+                console.log("------");
+                console.log(data);
+
+                $("#historical").html(Handlebars.templates.historical_table(data.timeline));
+            };
+
+            //Load historical data
+            var countriesByCode = Settings.lists.countriesByCode;
+            var country_name = function(){
+                for (var i = 0; i < countriesByCode.length; i++) {
+                    if (countryCode == countriesByCode[i].abbreviation) {
+                        return countriesByCode[i].country;
+                    }
+                }
+            }();
+
+            console.log(country_name);
+
+            var url = Settings.data.jhucsse.historical.url + Settings.data.jhucsse.historical.sort + country_name;
+            console.log(url);
+            
+
+            $.ajax({
+                url: url,
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    callback2(data);
+                }
+            });
+        }
+
+        var callback1 = function(data) {
+
             data.sort((a, b) => (a.country > b.country) ? 1 : -1);
-            data["country"] = Settings.defaultCountry;
+            data["country"] = Settings.defaultCountry.code;
             
             $("#content").html(Handlebars.templates.stats_by_country(data));
             $("#country_list").val(country);
@@ -344,9 +379,11 @@
             });
 
             loadCountryStats(data, country);
-        }
+            loadHistoricalData(country);
 
-        request(Settings.data.novel.countries, callback);
+        };
+
+        request(Settings.data.novel.countries, callback1);
     }
 
     function loadPage2() {

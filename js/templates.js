@@ -45,6 +45,33 @@ templates['global_stats'] = template({"compiler":[8,">= 4.3.0"],"main":function(
     + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,(depth0 != null ? lookupProperty(depth0,"affected") : depth0),{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":60,"column":46},"end":{"line":60,"column":68}}}))
     + "</div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n</div>";
 },"useData":true});
+templates['historical_table'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "                            <tr>                                \n                                <th scope=\"row\">"
+    + alias3(((helper = (helper = lookupProperty(helpers,"key") || (data && lookupProperty(data,"key"))) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"key","hash":{},"data":data,"loc":{"start":{"line":22,"column":48},"end":{"line":22,"column":56}}}) : helper)))
+    + "</th>\n                                <td class=\"text-right\">"
+    + alias3((lookupProperty(helpers,"thousands")||(depth0 && lookupProperty(depth0,"thousands"))||alias2).call(alias1,depth0,{"name":"thousands","hash":{},"data":data,"loc":{"start":{"line":23,"column":55},"end":{"line":23,"column":73}}}))
+    + "</td>\n                            </tr>\n";
+},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class=\"row dash-row\">\n    <div class=\"col-xl-4\">\n\n        <div class=\"card spur-card\">\n            <div class=\"card-header\">\n                <div class=\"spur-card-icon\">\n                    <i class=\"fas fa-table\"></i>\n                </div>\n                <div class=\"spur-card-title\">Historical Cases</div>\n            </div>\n            <div class=\"card-body\">\n                <table class=\"table table-in-card\">\n                    <thead>\n                        <tr>\n                            <th scope=\"col\"><a class=\"col-name\" href=\"#\">date</a></th>\n                            <th scope=\"col\"><a class=\"col-name\" href=\"#\">cases</a></th>\n                        </tr>\n                    </thead>\n                    <tbody>\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"cases") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":20,"column":24},"end":{"line":25,"column":33}}})) != null ? stack1 : "")
+    + "                    </tbody>\n                </table>\n            </div>\n        </div>\n\n    </div>\n\n    <div class=\"col-xl-4\">\n\n        <div class=\"card spur-card\">\n            <div class=\"card-header\">\n                <div class=\"spur-card-icon\">\n                    <i class=\"fas fa-table\"></i>\n                </div>\n                <div class=\"spur-card-title\">Historical Deaths</div>\n            </div>\n            <div class=\"card-body\">\n                <table class=\"table table-in-card\">\n                    <thead>\n                        <tr>\n                            <th scope=\"col\"><a class=\"col-name\" href=\"#\">date</a></th>\n                            <th scope=\"col\"><a class=\"col-name\" href=\"#\">cases</a></th>\n                        </tr>\n                    </thead>\n                    <tbody>\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"deaths") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":51,"column":24},"end":{"line":56,"column":33}}})) != null ? stack1 : "")
+    + "                    </tbody>\n                </table>\n            </div>\n        </div>\n\n    </div>\n\n</div>";
+},"useData":true});
 templates['news_list'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -127,7 +154,7 @@ templates['stats_by_country'] = template({"1":function(container,depth0,helpers,
 
   return "<div class=\"row dash-row\">\n    <div class=\"col-xl-3 col-lg-6 col-sm-12\">\n        <select class=\"form-control\" id=\"country_list\">\n"
     + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":4,"column":12},"end":{"line":6,"column":21}}})) != null ? stack1 : "")
-    + "        </select>\n    </div>\n    <div class=\"col-3\">\n        <select class=\"form-control hidden\" id=\"state_list\"></select>\n    </div>            \n    </div>\n\n    <div id=\"country_values\">\n    \n        <!-- content here -->\n\n    </div>   \n</div>";
+    + "        </select>\n    </div>\n    <div class=\"col-3\">\n        <select class=\"form-control hidden\" id=\"state_list\"></select>\n    </div>            \n    </div>\n\n    <div id=\"country_values\">\n    \n        <!-- content here -->\n\n    </div>\n\n    <div id=\"historical\">\n    \n        <!-- content here -->\n\n    </div>   \n</div>";
 },"useData":true});
 templates['stats_by_country_boxes'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {

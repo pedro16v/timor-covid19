@@ -1,0 +1,64 @@
+<div class="row dash-row">
+    <div class="col-xl-4">
+
+        <div class="card spur-card">
+            <div class="card-header">
+                <div class="spur-card-icon">
+                    <i class="fas fa-table"></i>
+                </div>
+                <div class="spur-card-title">Historical Cases</div>
+            </div>
+            <div class="card-body">
+                <table class="table table-in-card">
+                    <thead>
+                        <tr>
+                            <th scope="col"><a class="col-name" href="#">date</a></th>
+                            <th scope="col"><a class="col-name" href="#">cases</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each cases}}
+                            <tr>                                
+                                <th scope="row">{{@key}}</th>
+                                <td class="text-right">{{thousands this}}</td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-xl-4">
+
+        <div class="card spur-card">
+            <div class="card-header">
+                <div class="spur-card-icon">
+                    <i class="fas fa-table"></i>
+                </div>
+                <div class="spur-card-title">Historical Deaths</div>
+            </div>
+            <div class="card-body">
+                <table class="table table-in-card">
+                    <thead>
+                        <tr>
+                            <th scope="col"><a class="col-name" href="#">date</a></th>
+                            <th scope="col"><a class="col-name" href="#">cases</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each deaths}}
+                            <tr>                                
+                                <th scope="row">{{@key}}</th>
+                                <td class="text-right">{{thousands this}}</td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
