@@ -12,15 +12,16 @@
                 <table class="table table-in-card">
                     <thead>
                         <tr>
-                            <th scope="col"><a class="col-name" href="#">name</a></th>
+                            <th scope="col"><a class="col-name" href="#"></a></th>
                             <th scope="col"><a class="col-population" href="#">population</a></th>
-                            <th scope="col"><a class="col-cases" href="#">cases</a></th>
-                            <th scope="col"><a class="col-deaths" href="#">deaths</a></th>
-                            <th scope="col"><a class="col-ratio1" href="#">deaths per case</a></th> 
-                            <th scope="col"><a class="col-ratio2" href="#">deaths per million</a></th>
-                            <th scope="col"><a class="col-ratio4" href="#">cases per million</a></th>
-                            <th scope="col"><a class="col-temperature" href="#">AVG ºC</a></th>
-                            <th scope="col"><a class="col-ratio3" href="#">deaths per degree</a></th>
+                            <th scope="col"><a class="col-cases" href="#">cases (c)</a></th>
+                            <th scope="col"><a class="col-deaths" href="#">deaths (d)</a></th>
+                            <th scope="col"><a class="col-ratio1" href="#">d / case</a></th> 
+                            <th scope="col"><a class="col-ratio2" href="#">d / million</a></th>
+                            <th scope="col"><a class="col-ratio4" href="#">c / million</a></th>
+                            <th scope="col"><a class="col-temperature" href="#">avg ºC</a></th>
+                            <th scope="col"><a class="col-ratio3" href="#">d / ºC</a></th>
+                            <th scope="col"><a class="col-avg-age" href="#">avg age</a></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +39,7 @@
                                 <td class="text-right">{{case_ratio_per_population}}</td>
                                 <td class="text-right">{{temperature}}</td>
                                 <td class="text-right">{{death_ratio_per_temperature}}</td>
+                                <td class="text-right">{{avg_age}}</td>
                             </tr>
                         {{/each}}
                     </tbody>

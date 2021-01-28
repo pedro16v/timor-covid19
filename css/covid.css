@@ -20,5 +20,13 @@
 }
 
 table thead th {
-	text-align: center;
+	text-align: right;
+}
+
+table {
+	font-size: 0.8rem;
+}
+
+.table td, .table th {
+	padding: 0.25rem 0.5rem;
 }

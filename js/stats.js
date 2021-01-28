@@ -10,32 +10,32 @@
         data : {
             novel : {
                 world : {
-                    url : "https://corona.lmao.ninja/v2/all",
+                    url : "https://corona.lmao.ninja/v3/covid-19/all",
                     cache: null
                 },
                 countries : {
-                    url : "https://corona.lmao.ninja/v2/countries",
+                    url : "https://corona.lmao.ninja/v3/covid-19/countries",
                     sort : "?sort=",
                     options : [],
                     cache : null
                 },
                 country : {
-                    url : "https://corona.lmao.ninja/v2/countries/",
+                    url : "https://corona.lmao.ninja/v3/covid-19/countries/",
                     options : [],
                     cache : null
                 },
                 statesUS : {
-                    url : "https://corona.lmao.ninja/v2/states",
+                    url : "https://corona.lmao.ninja/v3/covid-19/states",
                     cache : null                    
                 }
             },
             jhucsse : {
                 provinces : {
-                    url : "https://corona.lmao.ninja/v2/jhucsse",
+                    url : "https://corona.lmao.ninja/v3/covid-19/jhucsse",
                     cache : null
                 },
                 historical : {
-                    url : "https://corona.lmao.ninja/v2/historical",
+                    url : "https://corona.lmao.ninja/v3/covid-19/historical",
                     sort : "/",
                     options : [],
                     cache : null
@@ -46,6 +46,7 @@
             countriesByCode : null,
             countriesByPopulation : null,
             countriesByTemperature : null,
+            countriesByAvgAge: null,
             statesByPopulation : null
         },
         objects : {
@@ -70,7 +71,7 @@
                 this.casesPerOneMillion = casesPerOneMillion;
                 this.flag = flag;
             },
-            fullStats : function FullStats(name, population, cases, deaths, temperature, death_ratio_per_infected, death_ratio_per_population, death_ratio_per_temperature, case_ratio_per_population, flag) {
+            fullStats : function FullStats(name, population, cases, deaths, temperature, death_ratio_per_infected, death_ratio_per_population, death_ratio_per_temperature, case_ratio_per_population, avg_age, flag) {
                 this.name = name;
                 this.population = population;
                 this.cases = cases;
@@ -80,6 +81,7 @@
                 this.death_ratio_per_population = death_ratio_per_population;
                 this.death_ratio_per_temperature = death_ratio_per_temperature;
                 this.case_ratio_per_population = case_ratio_per_population;
+                this.avg_age = avg_age;
                 this.flag = flag;
             },
             StateStats : function StateStats(name, population, cases, todayCases, deaths, todayDeaths, recovered, active, death_ratio_per_infected, death_ratio_per_population, case_ratio_per_population) {
@@ -168,6 +170,16 @@
 
         (function() {
             $.ajax({
+              url: '/json/country-by-avg-age.json',
+              dataType: 'json',
+              success: function(data) {
+                Settings.lists.countriesByAvgAge = data;
+              }
+            });
+        }());
+
+        (function() {
+            $.ajax({
               url: '/json/states-by-population.json',
               dataType: 'json',
               success: function(data) {
@@ -235,6 +247,12 @@
             $("#content").html(Handlebars.templates.table(data));
             loadOrderOptions(data);
         });
+        $(".col-avg-age").on("click", function (){
+            data.sort((a, b) => (a.avg_age < b.avg_age) ? 1 : -1);
+            $("#content").html(Handlebars.templates.table(data));
+            loadOrderOptions(data);
+        });
+
     }
 
     function getDeathsByCase(deaths, cases) { 
@@ -242,7 +260,7 @@
         var death_ratio_per_infected = 0;
         
         if (deaths > 0 && cases > 0) {
-            death_ratio_per_infected = parseFloat((deaths / cases) * 100).toFixed(2);
+            death_ratio_per_infected = parseFloat((deaths / cases) * 100).toFixed(1);
         } 
 
         return Number(death_ratio_per_infected);
@@ -253,7 +271,7 @@
         var death_ratio_per_population = 0;
 
         if (deaths > 0 && population > 0) {
-            death_ratio_per_population = parseFloat((deaths / population) * 1000000).toFixed(2);
+            death_ratio_per_population = parseFloat((deaths / population) * 1000000).toFixed(0);
         } 
 
         return Number(death_ratio_per_population);
@@ -264,7 +282,7 @@
         var case_ratio_per_population = 0;
 
         if (cases > 0 && population > 0) {
-            case_ratio_per_population = parseFloat((cases / population) * 1000000).toFixed(2);
+            case_ratio_per_population = parseFloat((cases / population) * 1000000).toFixed(0);
         } 
 
         return Number(case_ratio_per_population);
@@ -434,6 +452,28 @@
             }
 
             return isNaN(country_temperature) ? 0 : country_temperature;
+        } 
+
+        function getAvgAge(countryCode) {
+
+            var country_name = function(){
+                for (var i = 0; i < countriesByCode.length; i++) {
+                    if (countryCode == countriesByCode[i].abbreviation) {
+                        return countriesByCode[i].country;
+                    }
+                }
+            }();
+
+            var countriesByAvgAge = Settings.lists.countriesByAvgAge;
+            var country_avg_age = 0 ;
+
+            for (var i = 0; i < countriesByAvgAge.length; i++) {
+                if (country_name == countriesByAvgAge[i].country) {
+                    country_avg_age = parseInt(countriesByAvgAge[i].median);
+                }
+            }
+
+            return isNaN(country_avg_age) ? 0 : country_avg_age;
         }        
 
         var callback = function (data){
@@ -444,6 +484,7 @@
 
                 var population = data[key].hasOwnProperty("countryInfo") ? getPopulation(data[key].countryInfo.iso2, data[key].country) : 0;
                 var temperature = data[key].hasOwnProperty("countryInfo") ? getTemperature(data[key].countryInfo.iso2, data[key].country) : 0;
+                var avgAge = data[key].hasOwnProperty("countryInfo") ? getAvgAge(data[key].countryInfo.iso2, data[key].country) : 0;
                 var flag = data[key].hasOwnProperty("countryInfo") ? data[key].countryInfo.flag : null;
 
                 var country = new Settings.objects.fullStats(
@@ -456,6 +497,7 @@
                     getDeathsByPopulation(data[key].deaths, population),
                     getDeathsByTemperature(data[key].deaths, temperature),
                     getCasesByPopulation(data[key].cases, population),
+                    avgAge,
                     flag
                 );
 
